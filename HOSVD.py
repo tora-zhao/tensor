@@ -20,28 +20,24 @@ def HOSVD(X1,X2,R1=2,R2=2,R3=2):
         A[i].mprint()
         print
 
-    temp = nModeProduct(A[1].Transpose(),X1,X2,1)
-    temp.mprint()
-    print
-    g1,g2 = MatrixDivision(temp)
-    temp = Model2(g1,g2)
-    MatrixProduct(A[2].Transpose(),temp).mprint()
-    #temp = nModeProduct(A[2].Transpose(),g1,g2,2)
-    #temp.mprint()
-    #gを計算
-    #g1,g2 = X1,X2
-    #for n in range(1,4):
-    #    temp = nModeProduct(A[n].Transpose(),g1,g2,n)
-    #    g1,g2 = MatrixDivision(temp)
-    #    print "g1:"
-    #    g1.mprint()
-    #    print
-    #    print "g2:"
-    #    g2.mprint()
+    print "結果："
+        for i in range(1,4):
+            print "A(%d):"%(i)
+            A[i].mprint()
+            T = nModeProduct(T,A[i].Transpose(),i)
+            print
 
-    #temp = nModeProduct(A[1],g1,g2,1)
-    #g1,g2 = MatrixDivision(temp)
+        T.tprint()
             
+        #Y = X ×1A(1) ×2A(2) ×3A(3)より結果を検証
+    print "検証："
+        for i in range(1,4):
+            print "A(%d):"%(i)
+            A[i].mprint()
+            T = nModeProduct(T,A[i],i)
+            print
+        T.tprint()
+
 
 if __name__ == "__main__":
     X1 = Matrix(3,4,[[1,4,7,10],[2,5,8,11],[3,6,9,12]])
